@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FarmaRev — Política de Privacidade</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-deep:       #05100D;
+    --bg-page:       #081914;
+    --surface:       #0D2119;
+    --surface-2:     #112B21;
+    --surface-3:     #163526;
+    --border:        #1E4033;
+    --border-light:  #255040;
+
+    --teal:          #00D4A0;
+    --amber:         #F5A623;
+    --coral:         #FF6B6B;
+
+    --text-primary:  #E2F0EC;
+    --text-secondary:#7AADA0;
+    --text-muted:    #3D6B60;
+
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body:    'DM Sans', system-ui, sans-serif;
+    --font-mono:    'DM Mono', 'Courier New', monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg-deep);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 40px 40px;
+    opacity: 0.18;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    top: -200px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 700px;
+    height: 500px;
+    background: radial-gradient(ellipse, rgba(0,212,160,0.08) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .shell {
+    position: relative;
+    z-index: 1;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  /* ── Cabeçalho ─────────────────────────── */
+  .doc-header {
+    padding: 48px 0 32px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 36px;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+  .logo-mark {
+    width: 44px;
+    height: 44px;
+    background: linear-gradient(135deg, var(--surface-3), var(--bg-deep));
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 17px;
+    letter-spacing: -1px;
+    flex-shrink: 0;
+  }
+  .logo-mark span:first-child { color: var(--text-primary); }
+  .logo-mark span:last-child  { color: var(--teal); }
+  .brand-name {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .doc-type-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--teal);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .doc-header h1 {
+    font-family: var(--font-display);
+    font-size: 30px;
+    font-weight: 900;
+    line-height: 1.25;
+    color: var(--text-primary);
+    margin-bottom: 14px;
+  }
+  .doc-header > p {
+    color: var(--text-secondary);
+    font-size: 14px;
+    max-width: 600px;
+    margin-bottom: 16px;
+  }
+  .doc-meta-row {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .doc-meta-item {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+  }
+  .doc-meta-item strong { color: var(--text-secondary); }
+
+  /* ── Sumário ───────────────────────────── */
+  .toc {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 24px;
+    margin-bottom: 36px;
+  }
+  .toc h2 {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--teal);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .toc ol {
+    list-style: none;
+    counter-reset: toc-counter;
+  }
+  .toc li {
+    counter-increment: toc-counter;
+    margin-bottom: 8px;
+  }
+  .toc li:last-child { margin-bottom: 0; }
+  .toc a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 13.5px;
+    transition: color 0.15s;
+  }
+  .toc a:hover { color: var(--teal); }
+  .toc li::before {
+    content: counter(toc-counter, decimal-leading-zero);
+    font-family: var(--font-mono);
+    color: var(--text-muted);
+    margin-right: 10px;
+    font-size: 12px;
+  }
+
+  /* ── Seções ────────────────────────────── */
+  section {
+    margin-bottom: 36px;
+    padding-top: 8px;
+  }
+  section h2 {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+  section h2 .num {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--teal);
+    background: rgba(0,212,160,0.1);
+    border: 1px solid rgba(0,212,160,0.2);
+    border-radius: 6px;
+    padding: 3px 8px;
+    flex-shrink: 0;
+  }
+  section h3 {
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--teal);
+    margin: 22px 0 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  section h3:first-of-type { margin-top: 0; }
+
+  p { color: var(--text-secondary); font-size: 14.5px; margin-bottom: 14px; }
+  p:last-child { margin-bottom: 0; }
+
+  ul, ol.list { padding-left: 22px; margin-bottom: 14px; }
+  li { color: var(--text-secondary); font-size: 14.5px; margin-bottom: 6px; }
+  li::marker { color: var(--teal); }
+  li strong, p strong { color: var(--text-primary); }
+
+  .legal-note {
+    background: var(--surface-2);
+    border-left: 3px solid var(--teal);
+    border-radius: 0 8px 8px 0;
+    padding: 12px 16px;
+    margin: 16px 0;
+    font-size: 13px;
+    color: var(--text-secondary);
+    font-style: italic;
+  }
+  .legal-note strong { color: var(--teal); font-style: normal; }
+
+  .compromisso {
+    background: rgba(0,212,160,0.07);
+    border: 1px solid rgba(0,212,160,0.2);
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin: 14px 0;
+    font-size: 13.5px;
+    color: #A8D8C8;
+  }
+  .compromisso strong { color: var(--teal); }
+
+  .copyright-block {
+    background: var(--surface-3);
+    border: 1px solid var(--border-light);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin: 16px 0;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.8;
+  }
+
+  /* ── Rodapé ────────────────────────────── */
+  .doc-footer {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px 26px;
+    margin-top: 44px;
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+  .doc-footer p { margin-bottom: 6px; color: var(--text-muted); }
+  .doc-footer p:last-child { margin-bottom: 0; }
+  .doc-footer a { color: var(--teal); text-decoration: none; }
+
+  .back-to-top {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: var(--surface-2);
+    border: 1px solid var(--border-light);
+    color: var(--teal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 18px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+    transition: transform 0.15s, background 0.15s;
+    z-index: 50;
+  }
+  .back-to-top:hover { background: var(--surface-3); transform: translateY(-2px); }
+
+  @media (max-width: 600px) {
+    .doc-header { padding: 32px 0 24px; }
+    .doc-header h1 { font-size: 24px; }
+    section h2 { font-size: 17px; }
+  }
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <div class="doc-header">
+    <div class="brand">
+      <div class="logo-mark"><span>F</span><span>R</span></div>
+      <div class="brand-name">FarmaRev</div>
+    </div>
+    <div class="doc-type-label">▸ Documento Legal</div>
+    <h1>Política de Privacidade e Data Safety</h1>
+    <p>Este documento descreve como o <strong style="color:var(--text-primary)">FarmaRev</strong> coleta, usa e protege seus dados pessoais, em conformidade com a <strong style="color:var(--text-primary)">LGPD</strong> (Lei nº 13.709/2018) e as exigências da seção <em>Data Safety</em> da Google Play Store.</p>
+    <div class="doc-meta-row">
+      <div class="doc-meta-item">📅 <strong>Última atualização:</strong> Junho de 2026</div>
+      <div class="doc-meta-item">⚖️ <strong>Base legal:</strong> LGPD Art. 7º, I — Consentimento</div>
+      <div class="doc-meta-item">👤 <strong>Controlador:</strong> LUIZ FELIPE DA MOTA ROCHA</div>
+    </div>
+  </div>
+
+  <!-- Sumário -->
+  <nav class="toc">
+    <h2>Sumário</h2>
+    <ol>
+      <li><a href="#controlador">Quem Somos — Identificação do Controlador</a></li>
+      <li><a href="#cadastro">Dados de Cadastro</a></li>
+      <li><a href="#background">Coleta em Segundo Plano (Crashlytics e Analytics)</a></li>
+      <li><a href="#admob">Publicidade Direcionada (AdMob)</a></li>
+      <li><a href="#seguranca">Segurança e Armazenamento</a></li>
+      <li><a href="#direitos">Direitos do Titular (LGPD)</a></li>
+      <li><a href="#retencao">Retenção e Exclusão dos Dados</a></li>
+      <li><a href="#contato">Alterações e Contato</a></li>
+    </ol>
+  </nav>
+
+  <!-- § 1 -->
+  <section id="controlador">
+    <h2><span class="num">§ 1</span> Quem Somos — Identificação do Controlador</h2>
+    <p>O <strong>FarmaRev</strong> é desenvolvido e operado por <strong>LUIZ FELIPE DA MOTA ROCHA</strong>, pessoa física, residente no Estado do <strong>RIO DE JANEIRO</strong>, Brasil — doravante denominado "<strong>Controlador</strong>".</p>
+    <p>O Controlador é o responsável pelo tratamento dos seus dados pessoais, conforme definido no Art. 5º, VI, da LGPD. Para qualquer dúvida sobre seus dados, você pode entrar em contato conosco pelo e-mail: <strong>farmarevcontato@gmail.com</strong>.</p>
+    <div class="legal-note"><strong>Nota LGPD:</strong> Sendo o Controlador uma pessoa física, não há obrigatoriedade legal de nomear um DPO (Encarregado de Proteção de Dados) — mas recomenda-se designar um e-mail específico para tratamento de requisições de titulares, o que demonstra boa-fé e facilita a conformidade.</div>
+  </section>
+
+  <!-- § 2 -->
+  <section id="cadastro">
+    <h2><span class="num">§ 2</span> Dados de Cadastro — O Que Coletamos de Você</h2>
+
+    <h3>2.1 — Dados fornecidos voluntariamente no cadastro</h3>
+    <p>Para criar sua conta no FarmaRev, coletamos apenas os dados <strong>estritamente necessários</strong> para que o aplicativo funcione (princípio da minimização — LGPD, Art. 6º, III):</p>
+    <ul>
+      <li><strong>E-mail</strong>: usado para autenticação, recuperação de senha e comunicados importantes sobre sua conta. Não é usado para marketing sem seu consentimento explícito.</li>
+      <li><strong>Senha</strong>: nunca é armazenada em texto simples. O Firebase Authentication a armazena em formato criptografado com <em>bcrypt</em> — nem o Desenvolvedor tem acesso a ela.</li>
+      <li><strong>Nome de exibição</strong> : exibido apenas dentro do aplicativo para personalizar sua experiência.</li>
+    </ul>
+
+    <h3>2.2 — Dados gerados pelo uso do aplicativo</h3>
+    <p>Durante sua interação com o aplicativo, geramos e armazenamos no Firestore (banco de dados seguro do Google):</p>
+    <ul>
+      <li><strong>Cards visualizados, dominados e marcados para revisão</strong>: para manter seu progresso sincronizado entre dispositivos;</li>
+      <li><strong>Sequência de estudos (streak)</strong> e <strong>data do último acesso</strong>: para calcular sua sequência diária de estudos;</li>
+      <li><strong>Plano de assinatura</strong> (gratuito ou premium): para controlar o acesso ao conteúdo.</li>
+    </ul>
+
+    <h3>2.3 — Login via Google (OAuth)</h3>
+    <p>Se você optar por entrar com a conta Google, receberemos do Google apenas: e-mail, nome de exibição e foto de perfil. Nenhuma outra informação da sua conta Google é acessada. O token de acesso é usado exclusivamente para autenticar sua sessão no Firebase.</p>
+
+    <div class="legal-note"><strong>Nota técnica (Data Safety):</strong> Declare no Google Play Console: <em>"Dados coletados: e-mail (identidade), progresso de estudo (atividade do app)"</em>. Finalidade: <em>funcionalidade do app</em>. Criptografia em trânsito: <em>sim</em>. Exclusão por solicitação: <em>sim</em>.</div>
+  </section>
+
+  <!-- § 3 -->
+  <section id="background">
+    <h2><span class="num">§ 3</span> Coleta em Segundo Plano — Crashlytics e Analytics</h2>
+
+    <h3>3.1 — Firebase Crashlytics (Relatórios de Falha)</h3>
+    <p>O FarmaRev usa o <strong>Firebase Crashlytics</strong> para melhorar a estabilidade do aplicativo. Quando o app trava ou encontra um erro inesperado, o Crashlytics envia automaticamente — em segundo plano — um relatório técnico anônimo para nosso painel de análise.</p>
+    <p><strong>O que esse relatório contém:</strong></p>
+    <ul>
+      <li>O tipo e a mensagem do erro técnico (ex.: "NullPointerException na linha 42");</li>
+      <li>O modelo do dispositivo (ex.: "Samsung Galaxy A54") e versão do Android;</li>
+      <li>A versão do FarmaRev instalada;</li>
+      <li>O horário aproximado da falha.</li>
+    </ul>
+    <p><strong>O que NÃO está nesse relatório:</strong> seu e-mail, nome, senhas, conteúdo de mensagens ou qualquer dado pessoal identificável. Os relatórios são usados <em>exclusivamente</em> pela equipe de desenvolvimento para identificar e corrigir bugs técnicos.</p>
+
+    <h3>3.2 — Firebase Analytics (Estatísticas de Uso)</h3>
+    <p>O <strong>Firebase Analytics</strong> coleta dados estatísticos <em>agregados e anonimizados</em> sobre como os usuários interagem com o app. Por exemplo:</p>
+    <ul>
+      <li>Quais áreas de farmácia são mais acessadas (ex.: "Farmacologia" vs. "Legislação");</li>
+      <li>Tempo médio de sessão no aplicativo;</li>
+      <li>Taxa de retenção semanal e mensal.</li>
+    </ul>
+    <p>Esses dados são usados para <strong>melhorar o conteúdo pedagógico</strong> — por exemplo, identificar quais matérias precisam de mais cards ou explicações. O Analytics não associa esses dados ao seu e-mail ou identidade pessoal.</p>
+
+    <div class="legal-note"><strong>Nota (Data Safety):</strong> Declare o Firebase Analytics como coleta de <em>"Diagnósticos / Análise"</em> no Play Console. Marque que os dados são <em>coletados automaticamente</em>, usados para <em>melhoria do app</em> e <em>não são compartilhados com terceiros</em> além do Google (processador de dados).</div>
+  </section>
+
+  <!-- § 4 -->
+  <section id="admob">
+    <h2><span class="num">§ 4</span> Publicidade Direcionada — Google AdMob e ID de Publicidade</h2>
+
+    <h3>4.1 — Como a Publicidade Funciona no App</h3>
+    <p>Para manter o plano gratuito disponível sem custos para o usuário, o FarmaRev exibe anúncios fornecidos pelo <strong>Google AdMob</strong>, uma plataforma de publicidade da Google LLC. Para selecionar anúncios relevantes para você, o AdMob pode acessar o <strong>ID de Publicidade (AdID)</strong> do seu dispositivo Android — um identificador anônimo gerado pelo próprio sistema operacional para fins de publicidade.</p>
+
+    <h3>4.2 — O que é o ID de Publicidade?</h3>
+    <p>O <strong>ID de Publicidade (GAID/AdID)</strong> é um código único e anonimizado que o Android atribui ao seu dispositivo exclusivamente para uso em publicidade. Ele é diferente do seu número de telefone, e-mail ou qualquer outro dado pessoal. O AdMob usa esse ID para:</p>
+    <ul>
+      <li>Exibir anúncios potencialmente alinhados com seus interesses de estudo;</li>
+      <li>Evitar repetição excessiva do mesmo anúncio;</li>
+      <li>Medir a eficácia das campanhas publicitárias de forma agregada.</li>
+    </ul>
+
+    <h3>4.3 — Como Desativar os Anúncios Personalizados</h3>
+    <p>Você tem o direito de optar por não receber anúncios personalizados. Para isso, siga estas etapas no seu dispositivo Android:</p>
+    <ol class="list">
+      <li>Acesse <strong>Configurações → Google → Anúncios</strong>;</li>
+      <li>Ative a opção <strong>"Desativar personalização de anúncios"</strong>;</li>
+      <li>Você também pode selecionar <strong>"Redefinir ID de publicidade"</strong> para apagar o histórico existente.</li>
+    </ol>
+    <p>Com a personalização desativada, o app continuará exibindo anúncios, mas eles serão genéricos (não relacionados ao seu perfil).</p>
+
+    <div class="legal-note"><strong>Nota (Data Safety):</strong> Declare no Play Console: <em>"ID de publicidade: coletado pelo AdMob para anúncios direcionados. Não é vinculado ao e-mail do usuário. O usuário pode redefinir ou desativar nas configurações do dispositivo."</em> Marque <em>"Dados compartilhados com terceiros: Google AdMob"</em>.</div>
+  </section>
+
+  <!-- § 5 -->
+  <section id="seguranca">
+    <h2><span class="num">§ 5</span> Segurança e Armazenamento dos Dados</h2>
+
+    <h3>5.1 — Criptografia em Trânsito</h3>
+    <p>Todos os dados trocados entre o aplicativo e os servidores do Firebase são transmitidos por meio de conexões <strong>HTTPS/TLS</strong> criptografadas. Isso significa que nenhuma informação sua viaja "aberta" pela internet — ela é protegida por padrões de segurança equivalentes aos usados por bancos digitais.</p>
+
+    <h3>5.2 — Armazenamento em Nuvem Segura</h3>
+    <p>Seus dados de progresso, e-mail e configurações de conta são armazenados no <strong>Google Firebase Firestore</strong>, uma infraestrutura de dados gerenciada pelo Google com certificações internacionais de segurança (ISO 27001, SOC 2, entre outras). O Desenvolvedor não possui servidores físicos próprios.</p>
+
+    <h3>5.3 — Dados Armazenados Localmente</h3>
+    <p>Para funcionamento sem internet e desempenho mais rápido, o aplicativo pode salvar em seu dispositivo:</p>
+    <ul>
+      <li>Um arquivo de sessão criptografado (para manter seu login ativo);</li>
+      <li>Um cache de cards (para uso offline temporário, com validade de 7 dias);</li>
+      <li>Um registro de notificações (data do último lembrete exibido).</li>
+    </ul>
+    <p>Esses arquivos ficam em uma área privada do seu dispositivo (<strong>inacessível a outros aplicativos</strong> sem permissão root), e são removidos automaticamente ao desinstalar o app.</p>
+
+    <h3>5.4 — Não Vendemos Seus Dados</h3>
+    <div class="compromisso">
+      <strong>✅ COMPROMISSO DO DESENVOLVEDOR.</strong> Seus dados pessoais — especialmente seu e-mail — <strong>jamais são vendidos, alugados, trocados ou compartilhados com terceiros para fins comerciais</strong>. O único compartilhamento que ocorre é o estritamente necessário com os serviços do Google (Firebase, AdMob) para o funcionamento do aplicativo, sendo o Google um <em>processador de dados</em> sujeito às próprias políticas de privacidade e aos termos de serviço acordados com o Desenvolvedor.
+    </div>
+  </section>
+
+  <!-- § 6 -->
+  <section id="direitos">
+    <h2><span class="num">§ 6</span> Direitos do Titular — O Que Você Pode Solicitar (LGPD, Art. 18)</h2>
+    <p>A LGPD garante a você, como titular dos dados, os seguintes direitos que podem ser exercidos a qualquer momento:</p>
+
+    <h3>Como exercer seus direitos</h3>
+    <ul>
+      <li><strong>📧 Por e-mail:</strong> envie uma solicitação para <strong>farmarevcontato@gmail.com</strong> com o assunto "Direitos LGPD — [seu pedido]". Responderemos em até <strong>15 dias úteis</strong>, conforme o prazo legal.</li>
+      <li><strong>📱 Pelo próprio app:</strong> o botão "<strong>Desativar Conta</strong>" (em Configurações) remove permanentemente todos os seus dados do Firebase Authentication e do Firestore, exercendo automaticamente o Direito ao Esquecimento (Art. 18, VI da LGPD).</li>
+    </ul>
+
+    <h3>Seus direitos em detalhes</h3>
+    <ul>
+      <li><strong>Confirmação e acesso</strong> — saber se tratamos seus dados e obter uma cópia deles;</li>
+      <li><strong>Correção</strong> — corrigir dados desatualizados, incompletos ou inexatos;</li>
+      <li><strong>Anonimização ou eliminação</strong> — solicitar que dados desnecessários sejam anonimizados ou excluídos;</li>
+      <li><strong>Portabilidade</strong> — receber seus dados em formato legível por máquina para transferência a outro serviço;</li>
+      <li><strong>Revogação do consentimento</strong> — revogar o consentimento dado para o tratamento, com efeitos a partir da solicitação;</li>
+      <li><strong>Direito ao Esquecimento</strong> — solicitar a exclusão completa e permanente de todos os seus dados pessoais.</li>
+    </ul>
+
+    <div class="legal-note"><strong>Prazo de resposta:</strong> Conforme o Art. 18 da LGPD, atenderemos sua solicitação em até <strong>15 (quinze) dias úteis</strong> a contar do recebimento. Em caso de indeferimento, apresentaremos as razões por escrito.</div>
+  </section>
+
+  <!-- § 7 -->
+  <section id="retencao">
+    <h2><span class="num">§ 7</span> Retenção e Exclusão dos Dados</h2>
+    <p>Seus dados são mantidos pelo período em que sua conta estiver ativa. Ao desativar a conta pelo app ou por e-mail:</p>
+    <ul>
+      <li>Sua conta no Firebase Authentication é excluída em até <strong>24 horas</strong>;</li>
+      <li>Seu perfil, progresso e dados de uso no Firestore são excluídos na mesma operação;</li>
+      <li>Os dados do Firebase Analytics são anonimizados automaticamente pelo Google, não podendo mais ser associados à sua conta;</li>
+      <li>O log de consentimento (prova jurídica do aceite dos Termos) pode ser mantido por até <strong>5 anos</strong>, conforme obrigação legal de registro de consentimento (LGPD Art. 8º, §5º).</li>
+    </ul>
+  </section>
+
+  <!-- § 8 -->
+  <section id="contato">
+    <h2><span class="num">§ 8</span> Alterações desta Política e Contato</h2>
+
+    <h3>8.1 — Atualizações</h3>
+    <p>Esta Política pode ser atualizada para refletir mudanças legais, técnicas ou de produto. Alterações relevantes serão comunicadas com antecedência mínima de <strong>15 dias</strong> via notificação no app ou e-mail cadastrado. A data da última atualização aparece sempre no topo do documento.</p>
+
+    <h3>8.2 — Canal de Contato para Privacidade</h3>
+    <p>Para exercer seus direitos como titular, reportar incidentes de segurança ou esclarecer dúvidas sobre o tratamento de seus dados:</p>
+    <ul>
+      <li><strong>E-mail:</strong> farmarevcontato@gmail.com</li>
+      <li><strong>Pelo app:</strong> Suporte</li>
+      <li><strong>Autoridade:</strong> Em caso de reclamação, você pode também contatar a <strong>ANPD — Autoridade Nacional de Proteção de Dados</strong> (www.gov.br/anpd)</li>
+    </ul>
+
+    <div class="copyright-block">
+      © 2026 LUIZ FELIPE DA MOTA ROCHA. Política de Privacidade do FarmaRev.<br>
+      Documento elaborado em conformidade com a Lei nº 13.709/2018 (LGPD)<br>
+      e com as políticas de Data Safety da Google Play Store.<br>
+      Versão 1.0 — Última atualização: JUNHO DE 2026
+    </div>
+  </section>
+
+  <div class="doc-footer">
+    <p><strong style="color:var(--text-secondary)">URL para o Play Console:</strong> Insira a URL desta página no campo <em>"Privacy policy"</em> do Google Play Console, em <em>Store presence → Store listing → Privacy policy</em>.</p>
+    <p><strong style="color:var(--text-secondary)">Checklist Data Safety:</strong> Firebase Analytics ✓ · Firebase Crashlytics ✓ · Google AdMob / AdID ✓ · Conta e e-mail ✓ · Botão de exclusão no app ✓</p>
+    <p>Veja também: <a href="termos.html">Termos de Uso</a></p>
+  </div>
+
+</div>
+
+<a href="#" class="back-to-top" title="Voltar ao topo">↑</a>
+
+</body>
+</html>
