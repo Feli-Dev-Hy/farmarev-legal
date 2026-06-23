@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FarmaRev — Redirecionando...</title>
+<style>
+  :root{
+    --bg:#07111F; --surface:#0F1D2E; --primary:#0CC4B0;
+    --text:#E4EDF9; --text2:#6382A2;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    min-height:100vh; background:var(--bg);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Outfit',system-ui,sans-serif; color:var(--text);
+  }
+  .card{
+    background:var(--surface); border-radius:20px;
+    padding:40px 32px; max-width:340px; width:90%;
+    text-align:center; border:1px solid #1C2D42;
+  }
+  .spinner{
+    width:48px; height:48px; border:3px solid #1C2D42;
+    border-top-color:var(--primary); border-radius:50%;
+    animation:spin .8s linear infinite; margin:0 auto 24px;
+  }
+  @keyframes spin{to{transform:rotate(360deg);}}
+  h1{font-size:18px; font-weight:600; margin-bottom:8px;}
+  p{font-size:13px; color:var(--text2); line-height:1.6;}
+  .erro{display:none; margin-top:20px; padding:14px; background:#EF5A5A18;
+        border:1px solid #EF5A5A44; border-radius:10px; font-size:12px;
+        color:#EF5A5A; line-height:1.6;}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="spinner"></div>
+  <h1>Voltando para o FarmaRev…</h1>
+  <p id="msg">Aguarde, seu login está sendo concluído.</p>
+  <div class="erro" id="erro">
+    <b>Não foi possível abrir o app automaticamente.</b><br><br>
+    Se o FarmaRev não abriu, feche esta página e tente novamente
+    pelo app. Se o problema persistir, entre em contato:
+    farmarevcontato@gmail.com
+  </div>
+</div>
+
+<script>
+(function () {
+  // Extrai os parâmetros que o Google enviou na URL desta página.
+  // Ex.: https://feli-dev-hy.github.io/farmarev-legal/oauth.html
+  //        ?code=4/0AX...&state=abc123&scope=...
+  var params = new URLSearchParams(window.location.search);
+  var code  = params.get("code");
+  var state = params.get("state");
+  var error = params.get("error");
+
+  // Se o usuário cancelou o login no Google, o parâmetro "error" vem preenchido.
+  if (error) {
+    document.getElementById("msg").textContent =
+      "Login cancelado ou recusado pelo Google.";
+    document.getElementById("erro").style.display = "block";
+    document.querySelector(".spinner").style.display = "none";
+    return;
+  }
+
+  if (!code) {
+    document.getElementById("msg").textContent =
+      "Parâmetros de login ausentes.";
+    document.getElementById("erro").style.display = "block";
+    document.querySelector(".spinner").style.display = "none";
+    return;
+  }
+
+  // Monta o deep link para o app Android.
+  // O scheme "com.farmarev.farmarev" precisa estar declarado no
+  // AndroidManifest.xml (intent-filter) para o Android reconhecer.
+  var deepLink = "com.farmarev.farmarev://oauth"
+    + "?code="  + encodeURIComponent(code)
+    + "&state=" + encodeURIComponent(state || "");
+
+  // Tenta abrir o app via deep link imediatamente.
+  window.location.href = deepLink;
+
+  // Depois de 3 segundos sem sair desta página, mostra a mensagem de erro —
+  // o que indica que o Android não reconheceu o deep link (intent-filter
+  // ausente ou APK não instalado).
+  setTimeout(function () {
+    document.getElementById("erro").style.display = "block";
+    document.getElementById("msg").textContent =
+      "O app não abriu automaticamente.";
+    document.querySelector(".spinner").style.display = "none";
+  }, 3000);
+})();
+</script>
+</body>
+</html>
