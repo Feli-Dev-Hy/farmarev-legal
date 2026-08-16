@@ -2,97 +2,63 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FarmaRev — Redirecionando...</title>
 <style>
-  :root{
-    --bg:#07111F; --surface:#0F1D2E; --primary:#0CC4B0;
-    --text:#E4EDF9; --text2:#6382A2;
-  }
-  *{margin:0;padding:0;box-sizing:border-box;}
   body{
-    min-height:100vh; background:var(--bg);
+    font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    background:#0a0f0d; color:#e9f2ec;
     display:flex; align-items:center; justify-content:center;
-    font-family:'Outfit',system-ui,sans-serif; color:var(--text);
+    min-height:100vh; margin:0; padding:24px; text-align:center;
   }
-  .card{
-    background:var(--surface); border-radius:20px;
-    padding:40px 32px; max-width:340px; width:90%;
-    text-align:center; border:1px solid #1C2D42;
-  }
-  .spinner{
-    width:48px; height:48px; border:3px solid #1C2D42;
-    border-top-color:var(--primary); border-radius:50%;
-    animation:spin .8s linear infinite; margin:0 auto 24px;
-  }
-  @keyframes spin{to{transform:rotate(360deg);}}
-  h1{font-size:18px; font-weight:600; margin-bottom:8px;}
-  p{font-size:13px; color:var(--text2); line-height:1.6;}
-  .erro{display:none; margin-top:20px; padding:14px; background:#EF5A5A18;
-        border:1px solid #EF5A5A44; border-radius:10px; font-size:12px;
-        color:#EF5A5A; line-height:1.6;}
+  .box{max-width:420px}
+  h1{font-size:20px; margin-bottom:12px}
+  p{color:#8aa094; line-height:1.6; font-size:14.5px}
+  #fallback{display:none; margin-top:28px; padding-top:20px; border-top:1px solid #22322a}
+  #fallback strong{color:#e9f2ec}
+  a{color:#8fff6b}
 </style>
 </head>
 <body>
-<div class="card">
-  <div class="spinner"></div>
+<div class="box">
   <h1>Voltando para o FarmaRev…</h1>
-  <p id="msg">Aguarde, seu login está sendo concluído.</p>
-  <div class="erro" id="erro">
-    <b>Não foi possível abrir o app automaticamente.</b><br><br>
-    Se o FarmaRev não abriu, feche esta página e tente novamente
-    pelo app. Se o problema persistir, entre em contato:
-    farmarevcontato@gmail.com
+  <p>Aguarde, seu login está sendo concluído.</p>
+
+  <div id="fallback">
+    <p><strong>Não foi possível abrir o app automaticamente.</strong></p>
+    <p>
+      Se o FarmaRev não abriu, feche esta página e tente novamente pelo app.
+      Se o problema persistir, entre em contato:
+      <a href="mailto:farmarevcontato@gmail.com">farmarevcontato@gmail.com</a>
+    </p>
   </div>
 </div>
 
 <script>
-(function () {
-  // Extrai os parâmetros que o Google enviou na URL desta página.
-  // Ex.: https://feli-dev-hy.github.io/farmarev-legal/oauth.html
-  //        ?code=4/0AX...&state=abc123&scope=...
-  var params = new URLSearchParams(window.location.search);
-  var code  = params.get("code");
-  var state = params.get("state");
-  var error = params.get("error");
+  // 🐛 [OAUTH-DEEPLINK-02 — CORRIGIDO] Esta era a peça que faltava: a
+  // página já existia e já mostrava a mensagem de aviso, mas nunca
+  // chegava a REDIRECIONAR de volta para o app — por isso o aviso
+  // "não foi possível abrir automaticamente" sempre aparecia, mesmo
+  // com o Android configurado corretamente (o esquema farmarev:// só
+  // funciona se algo pedir para o navegador abri-lo).
+  //
+  // O Google redireciona para cá como:
+  //   https://feli-dev-hy.github.io/farmarev-legal/oauth.html?code=...&state=...
+  // Precisamos repassar EXATAMENTE os mesmos parâmetros (code e state)
+  // para o app — main.py já sabe extraí-los de page.route/page.query
+  // (função _extrair_params_oauth), então não é preciso mudar nada do
+  // lado Python.
+  var params  = window.location.search;                 // "?code=...&state=..."
+  var destino = "farmarev://oauth" + params;
 
-  // Se o usuário cancelou o login no Google, o parâmetro "error" vem preenchido.
-  if (error) {
-    document.getElementById("msg").textContent =
-      "Login cancelado ou recusado pelo Google.";
-    document.getElementById("erro").style.display = "block";
-    document.querySelector(".spinner").style.display = "none";
-    return;
-  }
+  window.location.href = destino;
 
-  if (!code) {
-    document.getElementById("msg").textContent =
-      "Parâmetros de login ausentes.";
-    document.getElementById("erro").style.display = "block";
-    document.querySelector(".spinner").style.display = "none";
-    return;
-  }
-
-  // Monta o deep link para o app Android.
-  // O scheme "com.farmarev.farmarev" precisa estar declarado no
-  // AndroidManifest.xml (intent-filter) para o Android reconhecer.
-  var deepLink = "com.farmarev.farmarev://oauth"
-    + "?code="  + encodeURIComponent(code)
-    + "&state=" + encodeURIComponent(state || "");
-
-  // Tenta abrir o app via deep link imediatamente.
-  window.location.href = deepLink;
-
-  // Depois de 3 segundos sem sair desta página, mostra a mensagem de erro —
-  // o que indica que o Android não reconheceu o deep link (intent-filter
-  // ausente ou APK não instalado).
+  // Se o app não abrir em ~2.5s (esquema não registrado, app não
+  // instalado, ou o usuário cancelou o app-chooser), mostra a mensagem
+  // de apoio em vez de deixar a pessoa olhando para uma tela vazia.
   setTimeout(function () {
-    document.getElementById("erro").style.display = "block";
-    document.getElementById("msg").textContent =
-      "O app não abriu automaticamente.";
-    document.querySelector(".spinner").style.display = "none";
-  }, 3000);
-})();
+    document.getElementById("fallback").style.display = "block";
+  }, 2500);
 </script>
 </body>
 </html>
