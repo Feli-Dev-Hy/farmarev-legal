@@ -8,7 +8,181 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg-deep:       #05100D;
+    --bg-deep:       #05100D;<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FarmaRev — Política de Privacidade</title>
+<meta name="description" content="Política de Privacidade do aplicativo FarmaRev: dados tratados, retenção, direitos do titular e exclusão de conta.">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#07111F">
+<style>
+  /* Paleta "Midnight Rx" — a mesma do app (utils/constants.py). */
+  :root{
+    --bg:#07111F; --surface:#0F1D2E; --surface2:#162438; --border:#243650;
+    --primary:#0CC4B0; --primary-dark:#0A9D8E; --alert:#F5A623; --danger:#EF5A5A;
+    --text:#E4EDF9; --text2:#8FAAC6;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;
+    --mono:ui-monospace,"SF Mono","Cascadia Mono",Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;scroll-padding-top:16px;-webkit-text-size-adjust:100%}
+  body{
+    margin:0; color:var(--text); font:16px/1.65 var(--sans); background-color:var(--bg);
+    background-image:
+      radial-gradient(900px 420px at 85% -10%, rgba(12,196,176,.16), transparent 60%),
+      linear-gradient(rgba(36,54,80,.28) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(36,54,80,.28) 1px, transparent 1px);
+    background-size:auto,34px 34px,34px 34px;
+    background-attachment:fixed;
+  }
+  a{color:var(--primary)}
+  a:focus-visible,.btn:focus-visible{outline:3px solid var(--alert);outline-offset:3px;border-radius:6px}
+  .wrap{max-width:760px;margin:0 auto;padding:28px 20px 56px}
+
+  .strip{font:600 11px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--text2);
+    display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  .strip i{width:6px;height:6px;border-radius:50%;background:var(--primary);display:inline-block}
+
+  header{margin:22px 0 26px;display:flex;gap:16px;align-items:flex-start}
+  .rx{flex:0 0 auto;width:54px;height:54px;border-radius:16px;display:grid;place-items:center;
+    background:linear-gradient(145deg,var(--primary),var(--primary-dark));color:#04201C;
+    font:italic 700 26px/1 var(--serif);box-shadow:0 8px 28px rgba(12,196,176,.25)}
+  h1{font:700 clamp(26px,5.4vw,38px)/1.12 var(--serif);margin:0 0 6px;letter-spacing:-.01em}
+  .sub{margin:0;color:var(--text2)}
+  .skip{display:inline-block;margin-top:14px;font:600 13px var(--mono);letter-spacing:.04em}
+
+  section{background:var(--surface);border:1px solid var(--border);border-radius:16px;
+    padding:22px 22px 20px;margin:0 0 18px;border-left:4px solid var(--primary-dark)}
+  h2{font:700 21px/1.25 var(--serif);margin:0 0 12px}
+  h2 small{display:block;font:600 11px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;
+    color:var(--primary);margin-bottom:8px}
+  p{margin:0 0 12px} p:last-child{margin-bottom:0}
+  ul,ol{margin:0 0 12px;padding-left:22px} li{margin:5px 0}
+
+  /* Bloco de pedido: "receita" com borda tracejada, destaque máximo da página */
+  #solicitar{border:2px dashed var(--primary);border-left:2px dashed var(--primary);
+    background:linear-gradient(180deg,var(--surface2),var(--surface))}
+  .paths{display:grid;gap:14px;margin:14px 0 4px}
+  @media(min-width:680px){.paths{grid-template-columns:1fr 1fr}}
+  .path{background:rgba(7,17,31,.55);border:1px solid var(--border);border-radius:14px;padding:16px}
+  .path h3{margin:0 0 8px;font:700 12px/1.3 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--alert)}
+  .steps{list-style:none;padding:0;counter-reset:s}
+  .steps li{counter-increment:s;position:relative;padding-left:38px;margin:10px 0}
+  .steps li::before{content:counter(s);position:absolute;left:0;top:1px;width:26px;height:26px;border-radius:999px;
+    background:var(--primary);color:#04201C;font:700 13px/26px var(--mono);text-align:center}
+  .btn{display:inline-block;margin:6px 8px 6px 0;padding:13px 20px;border-radius:12px;font-weight:700;
+    text-decoration:none;background:var(--primary);color:#04201C;border:2px solid var(--primary)}
+  .btn:hover{background:#2ADBC8;border-color:#2ADBC8}
+  .btn.ghost{background:transparent;color:var(--primary)}
+  .btn.ghost:hover{background:rgba(12,196,176,.12);border-color:var(--primary)}
+  code,.mail{font:600 14px var(--mono);background:var(--bg);border:1px solid var(--border);
+    border-radius:8px;padding:2px 8px;word-break:break-all}
+  .warn{border-left:3px solid var(--danger);padding:8px 12px;background:rgba(239,90,90,.09);
+    border-radius:0 10px 10px 0;margin:14px 0 0;font-size:15px}
+  .note{border-left:3px solid var(--alert);padding:8px 12px;background:rgba(245,166,35,.09);
+    border-radius:0 10px 10px 0;margin:14px 0 0;font-size:15px}
+  .cols{display:grid;gap:14px}
+  @media(min-width:680px){.cols{grid-template-columns:1fr 1fr}}
+  .cols h3{font:700 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;margin:0 0 6px}
+  .del h3{color:var(--danger)} .keep h3{color:var(--alert)}
+  footer{margin-top:26px;padding-top:18px;border-top:1px solid var(--border);color:var(--text2);font-size:14px}
+  footer a{margin-right:14px}
+
+  .reveal{animation:rise .65s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(var(--i,0)*80ms)}
+  @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){.reveal{animation:none} html{scroll-behavior:auto}}
+
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 0;padding:0;list-style:none}
+  .chips li{margin:0;font:600 12px var(--mono);border:1px solid var(--border);border-radius:999px;padding:5px 12px;color:var(--text2)}
+  .toc{columns:2 240px;padding-left:20px} .toc li{margin:3px 0}
+  details{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:12px 18px;margin:0 0 18px}
+  summary{cursor:pointer;font-weight:700} h3.s{font:700 16px var(--serif);margin:16px 0 6px}
+  .cta{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin:0 0 18px;padding:16px 20px;border-radius:14px;
+    border:2px dashed var(--primary);background:var(--surface2)} .cta p{margin:0;flex:1 1 260px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="strip reveal" style="--i:0"><i></i> FarmaRev <span>·</span> Documento legal</div>
+  <header class="reveal" style="--i:1">
+    <div class="rx" aria-hidden="true">Rx</div>
+    <div>
+      <h1>Política de Privacidade</h1>
+      <p class="sub">Como o <strong>FarmaRev</strong> trata seus dados pessoais, em conformidade com a LGPD (Lei nº 13.709/2018).</p>
+      <ul class="chips"><li>Versão 2.0</li><li>10 de outubro de 2026</li><li>Base legal: consentimento (Art. 7º, I)</li></ul>
+    </div>
+  </header>
+  <div class="cta reveal" style="--i:2"><p><strong>Quer excluir sua conta e seus dados?</strong> Você pode fazer isso no app ou, sem o app, pela página de exclusão.</p><a class="btn" href="https://feli-dev-hy.github.io/farmarev-legal/exclusao-conta.html">Excluir minha conta</a></div>
+  <details class="reveal" style="--i:3"><summary>O que mudou na versão 2.0 (antes: junho de 2026)</summary>
+    <ul><li>Senha: o algoritmo correto é <strong>scrypt</strong> (a versão anterior citava bcrypt).</li>
+    <li>Arquivo de sessão: esclarecido que o app não o criptografa.</li>
+    <li>Registro de consentimento: mantido por até 5 anos após a exclusão, com a base legal correta.</li>
+    <li>Prazo de resposta: 15 dias corridos.</li>
+    <li>Botão do app renomeado para “Excluir minha conta”; criada a página de exclusão na web.</li>
+    <li>Removidas as menções a Crashlytics, Analytics e AdMob: o app não usa esses serviços nesta versão.</li></ul></details>
+  <nav aria-label="Sumário" class="reveal" style="--i:3"><ol class="toc"><li><a href="#controlador">Quem somos</a></li><li><a href="#cadastro">Dados que tratamos</a></li><li><a href="#terceiros">Serviços de terceiros, anúncios e métricas</a></li><li><a href="#assinatura">Plano gratuito e assinatura</a></li><li><a href="#seguranca">Segurança e armazenamento</a></li><li><a href="#direitos">Seus direitos</a></li><li><a href="#retencao">Retenção e exclusão</a></li><li><a href="#contato">Alterações e contato</a></li></ol></nav>
+<section id="controlador" class="reveal" style="--i:4"><h2><small>§ 1</small>Quem somos (controlador)</h2>
+<p>O <strong>FarmaRev</strong> é desenvolvido e operado por <strong>Luiz Felipe da Mota Rocha</strong>, pessoa física, residente no Estado do Rio de Janeiro, Brasil (o “Controlador”), responsável pelo tratamento dos seus dados pessoais (LGPD, Art. 5º, VI). Contato: <a href="mailto:farmarevcontato@gmail.com">farmarevcontato@gmail.com</a>.</p></section>
+<section id="cadastro" class="reveal" style="--i:5"><h2><small>§ 2</small>Dados que tratamos</h2>
+<h3 class="s">2.1 Cadastro</h3>
+<ul><li><strong>E-mail</strong>: autenticação, recuperação de senha e avisos sobre a conta.</li>
+<li><strong>Senha</strong>: nunca é guardada em texto simples. O Firebase Authentication a armazena apenas como <em>hash</em>, gerado com uma variante modificada do algoritmo <strong>scrypt</strong>; nós não temos acesso à sua senha.</li>
+<li><strong>Nome de exibição</strong>: mostrado apenas dentro do app.</li></ul>
+<h3 class="s">2.2 Uso do aplicativo</h3>
+<p>Guardamos no Firestore: cards visualizados, dominados e marcados para revisão; sequência de estudos; data do último estudo; data de cadastro; e o seu plano (gratuito ou Premium). A finalidade é manter seu progresso e controlar o acesso ao conteúdo.</p>
+<h3 class="s">2.3 Login com Google</h3>
+<p>Ao entrar com o Google, o FarmaRev usa e grava apenas seu <strong>e-mail</strong> e seu <strong>nome</strong>. O Google também pode informar a foto de perfil; o FarmaRev não a usa nem a grava em seu banco de dados (o registro do Firebase Authentication pode conservá-la até a exclusão da conta).</p>
+<h3 class="s">2.4 Registro de consentimento</h3>
+<p>No cadastro, ou no primeiro acesso com Google, você aceita os Termos de Uso e esta Política. Guardamos um registro mínimo desse aceite (data e hora, versão dos documentos aceitos, canal de aceite e um identificador técnico da conta; depois da exclusão, também as datas de exclusão e de descarte) para <strong>provar que o consentimento foi dado</strong>, o que a LGPD atribui ao controlador (Art. 8º, §2º). Veja o prazo de guarda no <a href="#retencao">§ 7</a>.</p></section>
+<section id="terceiros" class="reveal" style="--i:6"><h2><small>§ 3</small>Serviços de terceiros, anúncios e métricas</h2>
+<p>Para login e armazenamento de dados usamos o <strong>Firebase Authentication</strong> e o <strong>Cloud Firestore</strong>, do Google. O Google atua como operador de dados em nome do FarmaRev.</p>
+<p>Nesta versão, o FarmaRev <strong>não exibe anúncios</strong> e <strong>não usa</strong> ferramentas de terceiros de análise de uso ou de relatório de falhas. Se isso mudar, esta Política será atualizada <strong>antes</strong> da versão do app que incluir essas ferramentas.</p></section>
+<section id="assinatura" class="reveal" style="--i:7"><h2><small>§ 4</small>Plano gratuito e assinatura Premium</h2>
+<p>O plano gratuito dá acesso a uma parte do conteúdo; o plano Premium é uma assinatura. Quando estiver disponível, a cobrança será feita pela <strong>Google Play</strong>: o FarmaRev não recebe nem armazena número de cartão ou outros dados de pagamento.</p>
+<p><strong>Excluir a conta não cancela a assinatura.</strong> Para cancelar: Play Store → seu perfil → <em>Pagamentos e assinaturas</em> → <em>Assinaturas</em> → FarmaRev. Os registros de pagamento ficam com o Google.</p></section>
+<section id="seguranca" class="reveal" style="--i:8"><h2><small>§ 5</small>Segurança e armazenamento</h2>
+<h3 class="s">5.1 Em trânsito</h3>
+<p>A comunicação entre o app e os servidores do Google usa HTTPS/TLS.</p>
+<h3 class="s">5.2 Na nuvem</h3>
+<p>Seus dados ficam no Cloud Firestore, infraestrutura gerenciada pelo Google. O Controlador não mantém servidores próprios.</p>
+<h3 class="s">5.3 No seu aparelho</h3>
+<p>Para manter o login e permitir uso sem internet, o app salva localmente, na área privada do app:</p>
+<ul><li><strong>arquivo de sessão</strong> (identificador da conta, e-mail, nome, plano e chaves de acesso). <strong>O aplicativo não o criptografa</strong>: ele é protegido pelo isolamento que o Android dá a cada app. Em um aparelho com acesso root ou comprometido, ele poderia ser lido;</li>
+<li>cópia local do seu perfil e progresso, para uso offline;</li>
+<li>cache do conteúdo dos cards, com validade de 7 dias;</li>
+<li>a data da prova, se você a informar (fica somente no aparelho);</li>
+<li>um registro com a data do último lembrete exibido.</li></ul>
+<p>Esses dados locais são removidos ao sair da conta ou ao desinstalar o app.</p>
+<h3 class="s">5.4 Não vendemos seus dados</h3>
+<p>Seus dados pessoais, em especial seu e-mail, <strong>nunca são vendidos, alugados ou trocados</strong>. O único compartilhamento é o estritamente necessário com os serviços do Google (Firebase) para o app funcionar.</p></section>
+<section id="direitos" class="reveal" style="--i:9"><h2><small>§ 6</small>Seus direitos (LGPD, Art. 18)</h2>
+<p>Você pode, a qualquer momento: confirmar se tratamos seus dados e acessá-los; corrigi-los; pedir anonimização, bloqueio ou eliminação de dados desnecessários, excessivos ou tratados em desconformidade; pedir portabilidade; pedir a <strong>eliminação dos dados tratados com base no seu consentimento</strong>, ressalvadas as hipóteses do Art. 16; saber com quem compartilhamos seus dados; e <strong>revogar o consentimento</strong>.</p>
+<h3 class="s">Como exercer</h3>
+<ul><li><strong>No app:</strong> botão <strong>“Excluir minha conta”</strong>, na tela inicial.</li>
+<li><strong>Sem o app:</strong> <a href="https://feli-dev-hy.github.io/farmarev-legal/exclusao-conta.html">página de exclusão de conta</a>, ou e-mail para <a href="mailto:farmarevcontato@gmail.com">farmarevcontato@gmail.com</a> (assunto: “Direitos LGPD”).</li></ul>
+<p><strong>Prazo:</strong> pedidos por e-mail são respondidos em até <strong>15 dias corridos</strong> (a LGPD fixa esse prazo, no Art. 19, II, para confirmação de tratamento e acesso). Se negarmos um pedido, explicaremos o motivo por escrito. Reclamações podem ser dirigidas à <strong>ANPD</strong> (<a href="https://www.gov.br/anpd" rel="noopener">gov.br/anpd</a>).</p></section>
+<section id="retencao" class="reveal" style="--i:10"><h2><small>§ 7</small>Retenção e exclusão</h2>
+<p>Mantemos seus dados enquanto sua conta estiver ativa. Ao excluir a conta, pelo app ou por pedido na web:</p>
+<ul><li>sua conta de login (Firebase Authentication) é excluída <strong>na hora</strong>;</li>
+<li>seu perfil e seu progresso (Firestore) são excluídos na mesma operação;</li>
+<li>os dados locais saem do aparelho ao sair da conta ou desinstalar o app.</li></ul>
+<h3 class="s">O que guardamos depois da exclusão</h3>
+<p>O <strong>registro mínimo de consentimento</strong> (§ 2.4) é mantido por até <strong>5 anos</strong> contados da exclusão da conta, e depois descartado. Ele serve só para comprovar que você aceitou os Termos e esta Política e para a defesa de direitos do Controlador em eventual processo judicial, administrativo ou arbitral (LGPD, Art. 8º, §2º e Art. 7º, VI). Não o usamos para nenhuma outra finalidade. O prazo corresponde aos prazos de prescrição de 3 anos (Código Civil, art. 206, §3º, V) e 5 anos (CDC, art. 27) das pretensões de reparação.</p>
+<p>Cópias técnicas de segurança mantidas pelo Google (Firebase) podem persistir por período limitado, conforme as políticas do Google, sem acesso do Controlador. Registros de pagamento da Google Play (§ 4) são do Google.</p></section>
+<section id="contato" class="reveal" style="--i:11"><h2><small>§ 8</small>Alterações e contato</h2>
+<p>Podemos atualizar esta Política por mudanças legais, técnicas ou de produto. Mudanças relevantes serão comunicadas pelo app ou pelo e-mail cadastrado, sempre que possível com antecedência. A data da versão vigente aparece no topo.</p>
+<p>Contato para privacidade e exercício de direitos: <a href="mailto:farmarevcontato@gmail.com">farmarevcontato@gmail.com</a>.</p></section>
+  <footer>
+    <p><a href="https://feli-dev-hy.github.io/farmarev-legal/exclusao-conta.html">Excluir conta</a><a href="https://feli-dev-hy.github.io/farmarev-legal/termos.html">Termos de Uso</a></p>
+    <p>© 2026 Luiz Felipe da Mota Rocha · Versão 2.0 · Última atualização: 10 de outubro de 2026.</p>
+  </footer>
+</div>
+</body>
+</html>
+
     --bg-page:       #081914;
     --surface:       #0D2119;
     --surface-2:     #112B21;
