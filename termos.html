@@ -1,502 +1,191 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>FarmaRev — Termos de Uso e Responsabilidade</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<meta name="description" content="Termos de Uso e Responsabilidade do aplicativo FarmaRev: licença de uso, propriedade intelectual, assinatura Premium e foro.">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#07111F">
 <style>
-  :root {
-    --bg-deep:       #05100D;
-    --bg-page:       #081914;
-    --surface:       #0D2119;
-    --surface-2:     #112B21;
-    --surface-3:     #163526;
-    --border:        #1E4033;
-    --border-light:  #255040;
-
-    --teal:          #00D4A0;
-    --amber:         #F5A623;
-    --coral:         #FF6B6B;
-
-    --text-primary:  #E2F0EC;
-    --text-secondary:#7AADA0;
-    --text-muted:    #3D6B60;
-
-    --font-display: 'Playfair Display', Georgia, serif;
-    --font-body:    'DM Sans', system-ui, sans-serif;
-    --font-mono:    'DM Mono', 'Courier New', monospace;
+  /* Paleta "Midnight Rx" — a mesma do app (utils/constants.py). */
+  :root{
+    --bg:#07111F; --surface:#0F1D2E; --surface2:#162438; --border:#243650;
+    --primary:#0CC4B0; --primary-dark:#0A9D8E; --alert:#F5A623; --danger:#EF5A5A;
+    --text:#E4EDF9; --text2:#8FAAC6;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;
+    --mono:ui-monospace,"SF Mono","Cascadia Mono",Menlo,Consolas,monospace;
   }
-
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--bg-deep);
-    color: var(--text-primary);
-    font-family: var(--font-body);
-    font-size: 15px;
-    line-height: 1.7;
-    min-height: 100vh;
-  }
-
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;scroll-padding-top:16px;-webkit-text-size-adjust:100%}
+  body{
+    margin:0; color:var(--text); font:16px/1.65 var(--sans); background-color:var(--bg);
     background-image:
-      linear-gradient(var(--border) 1px, transparent 1px),
-      linear-gradient(90deg, var(--border) 1px, transparent 1px);
-    background-size: 40px 40px;
-    opacity: 0.18;
-    pointer-events: none;
-    z-index: 0;
+      radial-gradient(900px 420px at 85% -10%, rgba(12,196,176,.16), transparent 60%),
+      linear-gradient(rgba(36,54,80,.28) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(36,54,80,.28) 1px, transparent 1px);
+    background-size:auto,34px 34px,34px 34px;
+    background-attachment:fixed;
   }
+  a{color:var(--primary)}
+  a:focus-visible,.btn:focus-visible{outline:3px solid var(--alert);outline-offset:3px;border-radius:6px}
+  .wrap{max-width:760px;margin:0 auto;padding:28px 20px 56px}
 
-  body::after {
-    content: '';
-    position: fixed;
-    top: -200px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 700px;
-    height: 500px;
-    background: radial-gradient(ellipse, rgba(0,212,160,0.08) 0%, transparent 70%);
-    pointer-events: none;
-    z-index: 0;
-  }
+  .strip{font:600 11px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--text2);
+    display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  .strip i{width:6px;height:6px;border-radius:50%;background:var(--primary);display:inline-block}
 
-  .shell {
-    position: relative;
-    z-index: 1;
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 0 24px 80px;
-  }
+  header{margin:22px 0 26px;display:flex;gap:16px;align-items:flex-start}
+  .rx{flex:0 0 auto;width:54px;height:54px;border-radius:16px;display:grid;place-items:center;
+    background:linear-gradient(145deg,var(--primary),var(--primary-dark));color:#04201C;
+    font:italic 700 26px/1 var(--serif);box-shadow:0 8px 28px rgba(12,196,176,.25)}
+  h1{font:700 clamp(26px,5.4vw,38px)/1.12 var(--serif);margin:0 0 6px;letter-spacing:-.01em}
+  .sub{margin:0;color:var(--text2)}
+  .skip{display:inline-block;margin-top:14px;font:600 13px var(--mono);letter-spacing:.04em}
 
-  /* ── Cabeçalho ─────────────────────────── */
-  .doc-header {
-    padding: 48px 0 32px;
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 36px;
-  }
+  section{background:var(--surface);border:1px solid var(--border);border-radius:16px;
+    padding:22px 22px 20px;margin:0 0 18px;border-left:4px solid var(--primary-dark)}
+  h2{font:700 21px/1.25 var(--serif);margin:0 0 12px}
+  h2 small{display:block;font:600 11px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;
+    color:var(--primary);margin-bottom:8px}
+  p{margin:0 0 12px} p:last-child{margin-bottom:0}
+  ul,ol{margin:0 0 12px;padding-left:22px} li{margin:5px 0}
 
-  .brand {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    margin-bottom: 24px;
-  }
-  .logo-mark {
-    width: 44px;
-    height: 44px;
-    background: linear-gradient(135deg, var(--surface-3), var(--bg-deep));
-    border: 1px solid var(--border-light);
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--font-display);
-    font-weight: 900;
-    font-size: 17px;
-    letter-spacing: -1px;
-    flex-shrink: 0;
-  }
-  .logo-mark span:first-child { color: var(--text-primary); }
-  .logo-mark span:last-child  { color: var(--teal); }
-  .brand-name {
-    font-family: var(--font-display);
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--text-primary);
-  }
+  /* Bloco de pedido: "receita" com borda tracejada, destaque máximo da página */
+  #solicitar{border:2px dashed var(--primary);border-left:2px dashed var(--primary);
+    background:linear-gradient(180deg,var(--surface2),var(--surface))}
+  .paths{display:grid;gap:14px;margin:14px 0 4px}
+  @media(min-width:680px){.paths{grid-template-columns:1fr 1fr}}
+  .path{background:rgba(7,17,31,.55);border:1px solid var(--border);border-radius:14px;padding:16px}
+  .path h3{margin:0 0 8px;font:700 12px/1.3 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--alert)}
+  .steps{list-style:none;padding:0;counter-reset:s}
+  .steps li{counter-increment:s;position:relative;padding-left:38px;margin:10px 0}
+  .steps li::before{content:counter(s);position:absolute;left:0;top:1px;width:26px;height:26px;border-radius:999px;
+    background:var(--primary);color:#04201C;font:700 13px/26px var(--mono);text-align:center}
+  .btn{display:inline-block;margin:6px 8px 6px 0;padding:13px 20px;border-radius:12px;font-weight:700;
+    text-decoration:none;background:var(--primary);color:#04201C;border:2px solid var(--primary)}
+  .btn:hover{background:#2ADBC8;border-color:#2ADBC8}
+  .btn.ghost{background:transparent;color:var(--primary)}
+  .btn.ghost:hover{background:rgba(12,196,176,.12);border-color:var(--primary)}
+  code,.mail{font:600 14px var(--mono);background:var(--bg);border:1px solid var(--border);
+    border-radius:8px;padding:2px 8px;word-break:break-all}
+  .warn{border-left:3px solid var(--danger);padding:8px 12px;background:rgba(239,90,90,.09);
+    border-radius:0 10px 10px 0;margin:14px 0 0;font-size:15px}
+  .note{border-left:3px solid var(--alert);padding:8px 12px;background:rgba(245,166,35,.09);
+    border-radius:0 10px 10px 0;margin:14px 0 0;font-size:15px}
+  .cols{display:grid;gap:14px}
+  @media(min-width:680px){.cols{grid-template-columns:1fr 1fr}}
+  .cols h3{font:700 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;margin:0 0 6px}
+  .del h3{color:var(--danger)} .keep h3{color:var(--alert)}
+  footer{margin-top:26px;padding-top:18px;border-top:1px solid var(--border);color:var(--text2);font-size:14px}
+  footer a{margin-right:14px}
 
-  .doc-type-label {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--teal);
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-  }
-  .doc-header h1 {
-    font-family: var(--font-display);
-    font-size: 30px;
-    font-weight: 900;
-    line-height: 1.25;
-    color: var(--text-primary);
-    margin-bottom: 14px;
-  }
-  .doc-header > p {
-    color: var(--text-secondary);
-    font-size: 14px;
-    max-width: 560px;
-    margin-bottom: 16px;
-  }
-  .doc-meta-row {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-  }
-  .doc-meta-item {
-    font-size: 12px;
-    color: var(--text-muted);
-    font-family: var(--font-mono);
-  }
-  .doc-meta-item strong { color: var(--text-secondary); }
+  .reveal{animation:rise .65s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(var(--i,0)*80ms)}
+  @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){.reveal{animation:none} html{scroll-behavior:auto}}
 
-  /* ── Sumário ───────────────────────────── */
-  .toc {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 20px 24px;
-    margin-bottom: 36px;
-  }
-  .toc h2 {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--teal);
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-bottom: 12px;
-  }
-  .toc ol {
-    list-style: none;
-    counter-reset: toc-counter;
-  }
-  .toc li {
-    counter-increment: toc-counter;
-    margin-bottom: 8px;
-  }
-  .toc li:last-child { margin-bottom: 0; }
-  .toc a {
-    color: var(--text-secondary);
-    text-decoration: none;
-    font-size: 13.5px;
-    transition: color 0.15s;
-  }
-  .toc a:hover { color: var(--teal); }
-  .toc li::before {
-    content: counter(toc-counter, decimal-leading-zero);
-    font-family: var(--font-mono);
-    color: var(--text-muted);
-    margin-right: 10px;
-    font-size: 12px;
-  }
-
-  /* ── Seções ────────────────────────────── */
-  section {
-    margin-bottom: 36px;
-    padding-top: 8px;
-  }
-  section h2 {
-    font-family: var(--font-display);
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--text-primary);
-    margin-bottom: 16px;
-    padding-bottom: 12px;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: baseline;
-    gap: 12px;
-  }
-  section h2 .num {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    color: var(--teal);
-    background: rgba(0,212,160,0.1);
-    border: 1px solid rgba(0,212,160,0.2);
-    border-radius: 6px;
-    padding: 3px 8px;
-    flex-shrink: 0;
-  }
-  section h3 {
-    font-family: var(--font-display);
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--teal);
-    margin: 22px 0 8px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-  section h3:first-of-type { margin-top: 0; }
-
-  p { color: var(--text-secondary); font-size: 14.5px; margin-bottom: 14px; }
-  p:last-child { margin-bottom: 0; }
-
-  ul, ol.list { padding-left: 22px; margin-bottom: 14px; }
-  li { color: var(--text-secondary); font-size: 14.5px; margin-bottom: 6px; }
-  li::marker { color: var(--teal); }
-  li strong, p strong { color: var(--text-primary); }
-
-  .legal-note {
-    background: var(--surface-2);
-    border-left: 3px solid var(--teal);
-    border-radius: 0 8px 8px 0;
-    padding: 12px 16px;
-    margin: 16px 0;
-    font-size: 13px;
-    color: var(--text-secondary);
-    font-style: italic;
-  }
-  .legal-note strong { color: var(--teal); font-style: normal; }
-
-  .proibicao {
-    background: rgba(255,107,107,0.07);
-    border: 1px solid rgba(255,107,107,0.2);
-    border-radius: 10px;
-    padding: 14px 18px;
-    margin: 14px 0;
-    font-size: 13.5px;
-    color: #FF9F9F;
-  }
-  .proibicao strong { color: var(--coral); }
-
-  .copyright-block {
-    background: var(--surface-3);
-    border: 1px solid var(--border-light);
-    border-radius: 10px;
-    padding: 16px 20px;
-    margin: 16px 0;
-    font-family: var(--font-mono);
-    font-size: 12px;
-    color: var(--text-secondary);
-    line-height: 1.8;
-  }
-
-  /* ── Rodapé ────────────────────────────── */
-  .doc-footer {
-    background: var(--surface);
-    border: 1px solid var(--border);  
-    border-radius: 14px;
-    padding: 22px 26px;
-    margin-top: 44px;
-    font-size: 13px;
-    color: var(--text-muted);
-    line-height: 1.7;
-  }
-  .doc-footer p { margin-bottom: 6px; color: var(--text-muted); }
-  .doc-footer p:last-child { margin-bottom: 0; }
-  .doc-footer a { color: var(--teal); text-decoration: none; }
-
-  .back-to-top {
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
-    background: var(--surface-2);
-    border: 1px solid var(--border-light);
-    color: var(--teal);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    font-size: 18px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
-    transition: transform 0.15s, background 0.15s;
-    z-index: 50;
-  }
-  .back-to-top:hover { background: var(--surface-3); transform: translateY(-2px); }
-
-  @media (max-width: 600px) {
-    .doc-header { padding: 32px 0 24px; }
-    .doc-header h1 { font-size: 24px; }
-    section h2 { font-size: 17px; }
-  }
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 0;padding:0;list-style:none}
+  .chips li{margin:0;font:600 12px var(--mono);border:1px solid var(--border);border-radius:999px;padding:5px 12px;color:var(--text2)}
+  .toc{columns:2 240px;padding-left:20px} .toc li{margin:3px 0}
+  details{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:12px 18px;margin:0 0 18px}
+  summary{cursor:pointer;font-weight:700} h3.s{font:700 16px var(--serif);margin:16px 0 6px}
+  .cta{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin:0 0 18px;padding:16px 20px;border-radius:14px;
+    border:2px dashed var(--primary);background:var(--surface2)} .cta p{margin:0;flex:1 1 260px}
 </style>
 </head>
 <body>
-<div class="shell">
-
-  <div class="doc-header">
-    <div class="brand">
-      <div class="logo-mark"><span>F</span><span>R</span></div>
-      <div class="brand-name">FarmaRev</div>
+<div class="wrap" id="topo">
+  <div class="strip reveal" style="--i:0"><i></i> FarmaRev <span>·</span> Documento legal</div>
+  <header class="reveal" style="--i:1">
+    <div class="rx" aria-hidden="true">Rx</div>
+    <div>
+      <h1>Termos de Uso e Responsabilidade</h1>
+      <p class="sub">Este documento regula o uso do aplicativo <strong>FarmaRev</strong>, destinado a estudantes e profissionais de Farmácia que se preparam para concursos públicos. Leia com atenção antes de utilizar o aplicativo.</p>
+      <ul class="chips"><li>Versão 2.0</li><li>13 de outubro de 2026</li><li>Vigência: a partir da data de publicação na Play Store</li><li>Lei aplicável: Lei 9.609/98 · Lei 9.610/98 · CDC</li></ul>
     </div>
-    <div class="doc-type-label">▸ Documento Legal</div>
-    <h1>Termos de Uso e Responsabilidade</h1>
-    <p>Este documento regula o uso do aplicativo <strong style="color:var(--text-primary)">FarmaRev</strong>, destinado a estudantes e profissionais de Farmácia que se preparam para concursos públicos. Leia com atenção antes de utilizar o aplicativo.</p>
-    <div class="doc-meta-row">
-      <div class="doc-meta-item">📅 <strong>Vigência:</strong> a partir da data de publicação na Play Store</div>
-      <div class="doc-meta-item">⚖️ <strong>Lei aplicável:</strong> Lei 9.609/98 · Lei 9.610/98 · CDC</div>
-    </div>
-  </div>
-
-  <!-- Sumário -->
-  <nav class="toc">
-    <h2>Sumário</h2>
-    <ol>
-      <li><a href="#objeto">Objeto e Licença de Uso</a></li>
-      <li><a href="#propriedade">Propriedade Intelectual</a></li>
-      <li><a href="#fairuse">Isenção de Vínculo e Uso Justo</a></li>
-      <li><a href="#responsabilidade">Limitação de Responsabilidade</a></li>
-      <li><a href="#obrigacoes">Obrigações do Usuário</a></li>
-      <li><a href="#assinatura">Assinatura Premium e Pagamentos</a></li>
-      <li><a href="#foro">Foro de Eleição e Disposições Gerais</a></li>
-    </ol>
-  </nav>
-
-  <!-- § 1 -->
-  <section id="objeto">
-    <h2><span class="num">§ 1</span> Objeto e Licença de Uso</h2>
-
-    <h3>1.1 — Apresentação do Aplicativo</h3>
-    <p>O <strong>FarmaRev</strong> é um aplicativo móvel de estudo desenvolvido e de titularidade exclusiva de <strong>LUIZ FELIPE DA MOTA ROCHA</strong>, pessoa física, doravante denominado "<strong>Desenvolvedor</strong>". O aplicativo oferece banco de questões, cartões de memorização (flashcards) e recursos de acompanhamento de progresso voltados exclusivamente ao preparo para concursos públicos nas áreas de Farmácia e Ciências Farmacêuticas.</p>
-
-    <h3>1.2 — Licença Concedida</h3>
-    <p>Ao instalar ou utilizar o FarmaRev, o usuário recebe uma licença de uso que é:</p>
-    <ul>
-      <li><strong>Pessoal</strong> — somente para uso próprio do titular da conta cadastrada;</li>
-      <li><strong>Não-exclusiva</strong> — outros usuários podem igualmente obter a mesma licença;</li>
-      <li><strong>Intransferível</strong> — não pode ser cedida, vendida ou repassada a terceiros;</li>
-      <li><strong>Revogável</strong> — pode ser suspensa ou encerrada pelo Desenvolvedor em caso de violação destes Termos;</li>
-      <li><strong>Limitada à finalidade de estudo</strong> — qualquer uso comercial, institucional ou concorrente é expressamente vedado.</li>
-    </ul>
-
-    <h3>1.3 — Público-Alvo e Restrição de Idade</h3>
-    <p>O aplicativo é destinado a estudantes de graduação em Farmácia e profissionais farmacêuticos maiores de 18 anos. O cadastro por menores de idade não é permitido.</p>
-
-    <div class="legal-note"><strong>Base legal:</strong> Art. 9º da Lei nº 9.609/1998 — os programas de computador são objeto de proteção como obras intelectuais. A licença de uso aqui concedida não implica transferência de direito de propriedade sobre o software.</div>
-  </section>
-
-  <!-- § 2 -->
-  <section id="propriedade">
-    <h2><span class="num">§ 2</span> Propriedade Intelectual — Proteção do Conteúdo</h2>
-
-    <h3>2.1 — Titularidade do Código-Fonte</h3>
-    <p>O código-fonte, a arquitetura, os algoritmos, as interfaces gráficas e toda a lógica de programação do FarmaRev são de titularidade exclusiva de <strong>LUIZ FELIPE DA MOTA ROCHA</strong>, protegidos pela <strong>Lei nº 9.609/1998 (Lei do Software)</strong>. Qualquer reprodução, distribuição, sublicenciamento ou engenharia reversa — no todo ou em parte — sem autorização prévia e expressa por escrito configura infração punível nos termos dos Arts. 12 e 13 da referida lei.</p>
-
-    <h3>2.2 — Titularidade do Conteúdo Didático Original</h3>
-    <p>Todos os textos de <strong>explicações teóricas, resoluções comentadas de questões, resumos didáticos, dicas mnemônicas, mapas conceituais e qualquer outro material pedagógico original</strong> produzido e inserido no aplicativo pelo Desenvolvedor são obras intelectuais protegidas pela <strong>Lei nº 9.610/1998 (Lei de Direitos Autorais)</strong>, sendo vedado ao usuário:</p>
-    <ul>
-      <li>Reproduzir ou publicar o conteúdo em qualquer meio digital ou impresso;</li>
-      <li>Criar obras derivadas com fins comerciais ou concorrentes;</li>
-      <li>Utilizar os textos para treinamento de modelos de inteligência artificial;</li>
-      <li>Distribuir o conteúdo a terceiros, mesmo que gratuitamente, sem autorização escrita.</li>
-    </ul>
-
-    <h3>2.3 — Proibição de Extração Automática de Dados (Scraping)</h3>
-    <div class="proibicao">
-      <strong>⛔ EXPRESSAMENTE PROIBIDO.</strong> É vedado o uso de qualquer técnica ou ferramenta automatizada de extração de dados, incluindo, sem limitação: <em>web scrapers</em>, robôs, rastreadores (<em>crawlers</em>), scripts de automação, APIs não autorizadas ou qualquer outro mecanismo que acesse o conteúdo do aplicativo de forma não humana e não interativa, com o objetivo de copiar, clonar, indexar ou reproduzir comentários explicativos, resoluções ou quaisquer outros materiais didáticos de propriedade do Desenvolvedor para uso em plataformas concorrentes ou fins comerciais.
-      <br><br>
-      A violação desta proibição sujeita o infrator às sanções civis e criminais previstas nos Arts. 102 a 110 da Lei nº 9.610/1998, podendo incluir indenização por danos materiais e morais, bem como medidas cautelares de cessação imediata da conduta.
-    </div>
-
-    <h3>2.4 — Marcas e Identidade Visual</h3>
-    <p>O nome "<strong>FarmaRev</strong>", a logomarca "FR", o design do aplicativo e os elementos visuais característicos são marcas e obras de titularidade do Desenvolvedor. O uso não autorizado para fins comerciais, associação com produtos concorrentes ou qualquer ato que cause confusão no mercado é expressamente proibido.</p>
-
-    <div class="legal-note"><strong>Fundamento legal:</strong> Arts. 7º, XII e 29 da Lei 9.610/98 — obras de terceiros (questões de bancas) integradas ao app com fins educacionais são utilizadas no limite do <em>fair use</em> didático; o conteúdo autoral do Desenvolvedor tem proteção integral e independente.</div>
-  </section>
-
-  <!-- § 3 -->
-  <section id="fairuse">
-    <h2><span class="num">§ 3</span> Isenção de Vínculo e Uso Justo (Fair Use)</h2>
-
-    <h3>3.1 — Titularidade das Questões de Terceiros</h3>
-    <p>As questões de concursos públicos exibidas no FarmaRev são de titularidade das respectivas <strong>bancas organizadoras</strong> (tais como VUNESP, CESPE/CEBRASPE, FCC, AOCP, IADES, entre outras), e são utilizadas exclusivamente com caráter <strong>educacional, ilustrativo e sem fins lucrativos diretos</strong>, nos termos do Art. 46, III, da Lei nº 9.610/1998, que admite a reprodução de pequenos trechos de obras protegidas para fins didáticos, sempre com indicação de autoria.</p>
-
-    <h3>3.2 — Ausência de Vínculo Institucional</h3>
-    <p>O FarmaRev <strong>não possui nenhum vínculo, parceria, endosso, patrocínio ou aprovação</strong> de qualquer banca organizadora, órgão público, universidade, CFF (Conselho Federal de Farmácia), CRF (Conselho Regional de Farmácia) ou entidade governamental. As menções a essas organizações têm exclusivo caráter referencial.</p>
-
-    <h3>3.3 — Atribuição de Fonte</h3>
-    <p>Todas as questões exibidas identificam a respectiva banca organizadora, o concurso de origem e o ano de realização. Caso alguma entidade considere que o uso extrapola os limites do <em>fair use</em> educacional, poderá entrar em contato pelo e-mail <strong>farmarevcontato@gmail.com</strong> para que a questão seja removida em prazo razoável.</p>
-  </section>
-
-  <!-- § 4 -->
-  <section id="responsabilidade">
-    <h2><span class="num">§ 4</span> Limitação de Responsabilidade</h2>
-
-    <h3>4.1 — Natureza Pedagógica do Aplicativo</h3>
-    <p>O FarmaRev é uma <strong>ferramenta de apoio ao estudo</strong>. O conteúdo disponibilizado tem caráter pedagógico e não constitui, em hipótese alguma, aconselhamento profissional, prescrição, orientação clínica ou qualquer forma de serviço regulamentado pelo CFF ou por outras entidades de saúde.</p>
-
-    <h3>4.2 — Não Garantia de Aprovação</h3>
-    <p>O Desenvolvedor emprega esforços razoáveis para manter o conteúdo atualizado com as <strong>diretrizes farmacêuticas vigentes</strong>, normas do CFF, legislações sanitárias e outros marcos regulatórios. Contudo, o FarmaRev <strong>não garante</strong>:</p>
-    <ul>
-      <li>Aprovação do usuário em qualquer concurso público;</li>
-      <li>Que o conteúdo esteja em conformidade com a banca específica do concurso almejado pelo usuário;</li>
-      <li>Que as questões ou gabaritos estejam isentos de atualizações pós-publicação do concurso;</li>
-      <li>Desempenho específico em provas práticas, redações ou demais etapas seletivas.</li>
-    </ul>
-
-    <h3>4.3 — Isenção por Decisões do Candidato</h3>
-    <p>O Desenvolvedor não se responsabiliza por eventuais <strong>reprovações, decisões de inscrição, desistências, atos praticados em provas</strong> ou qualquer outra escolha profissional ou acadêmica tomada pelo usuário com base, exclusiva ou parcialmente, no conteúdo do aplicativo.</p>
-
-    <h3>4.4 — Disponibilidade do Serviço</h3>
-    <p>O aplicativo pode sofrer indisponibilidades por manutenção, falhas técnicas, atualizações do sistema operacional ou problemas de infraestrutura de terceiros (Firebase/Google). O Desenvolvedor não se responsabiliza por danos decorrentes dessas indisponibilidades.</p>
-
-    <div class="legal-note"><strong>Fundamento legal:</strong> Arts. 12 e 14 do Código de Defesa do Consumidor (Lei nº 8.078/1990) — a limitação de responsabilidade aqui prevista é aplicável às situações em que o defeito decorra de culpa exclusiva do consumidor ou de terceiro, conforme Art. 12, §3º, III do CDC.</div>
-  </section>
-
-  <!-- § 5 -->
-  <section id="obrigacoes">
-    <h2><span class="num">§ 5</span> Obrigações do Usuário</h2>
-    <p>Ao utilizar o FarmaRev, o usuário se compromete a:</p>
-    <ul>
-      <li>Fornecer informações verdadeiras e atualizadas no cadastro;</li>
-      <li>Manter a confidencialidade de suas credenciais de acesso (e-mail e senha);</li>
-      <li>Não compartilhar sua conta com terceiros;</li>
-      <li>Não tentar contornar restrições técnicas de acesso, como o limite de cards gratuitos;</li>
-      <li>Não realizar engenharia reversa, descompilar ou desmontar qualquer componente do aplicativo;</li>
-      <li>Não utilizar o conteúdo para fins comerciais sem autorização prévia.</li>
-    </ul>
-    <p>A violação de qualquer dessas obrigações poderá resultar na suspensão ou cancelamento imediato da conta, sem direito a reembolso de valores pagos.</p>
-  </section>
-
-  <!-- § 6 -->
-  <section id="assinatura">
-    <h2><span class="num">§ 6</span> Assinatura Premium e Pagamentos</h2>
-
-    <h3>6.1 — Plano Gratuito</h3>
-    <p>O FarmaRev oferece gratuitamente acesso a um número limitado de cards (atualmente 10 cards por sessão). O acesso gratuito não tem prazo de validade, mas pode ser alterado pelo Desenvolvedor mediante aviso prévio de 30 dias.</p>
-
-    <h3>6.2 — Plano Premium</h3>
-    <p>O plano Premium desbloqueia o acesso a todos os cards disponíveis, bem como funcionalidades adicionais descritas na tela de assinatura do aplicativo. A cobrança é processada exclusivamente via <strong>Google Play Billing</strong>, conforme as políticas da Google LLC.</p>
-
-    <h3>6.3 — Política de Reembolso</h3>
-    <p>Reembolsos de assinaturas adquiridas via Google Play estão sujeitos à <strong>Política de Reembolso do Google Play</strong>, acessível em play.google.com. O usuário deve solicitar reembolsos diretamente ao Google, no prazo estabelecido pela plataforma.</p>
-
-    <h3>6.4 — Alterações de Preço</h3>
-    <p>Os preços do plano Premium podem ser alterados pelo Desenvolvedor, com aviso prévio de <strong>30 (trinta) dias</strong> via e-mail cadastrado ou notificação no aplicativo. A continuidade do uso após o novo preço entrar em vigor implica concordância com os valores atualizados.</p>
-  </section>
-
-  <!-- § 7 -->
-  <section id="foro">
-    <h2><span class="num">§ 7</span> Foro de Eleição e Disposições Gerais</h2>
-
-    <h3>7.1 — Lei Aplicável</h3>
-    <p>Estes Termos de Uso são regidos exclusivamente pelas leis da República Federativa do Brasil, em especial a Lei nº 9.609/1998, a Lei nº 9.610/1998, a Lei nº 13.709/2018 (LGPD) e o Código de Defesa do Consumidor (Lei nº 8.078/1990).</p>
-
-    <h3>7.2 — Foro de Eleição</h3>
-    <p>Para a resolução de qualquer controvérsia decorrente destes Termos, fica eleito o foro da <strong>comarca de ARARUAMA, Estado do RIO DE JANEIRO</strong>, com exclusão de qualquer outro, por mais privilegiado que seja, exceto nos casos em que a legislação de defesa do consumidor determine foro diverso em benefício do usuário.</p>
-
-    <h3>7.3 — Alterações dos Termos</h3>
-    <p>O Desenvolvedor reserva-se o direito de modificar estes Termos a qualquer momento. Alterações substanciais serão comunicadas com antecedência mínima de <strong>15 (quinze) dias</strong> via notificação no aplicativo ou e-mail cadastrado. O uso continuado após a vigência da nova versão implica concordância com as alterações.</p>
-
-    <h3>7.4 — Contato</h3>
-    <p>Para dúvidas, solicitações ou notificações legais relacionadas a estes Termos, o usuário pode entrar em contato pelo e-mail: <strong>farmarevcontato@gmail.com</strong>.</p>
-
-    <div class="copyright-block">
-      © 2026 LUIZ FELIPE DA MOTA ROCHA. Todos os direitos reservados.<br>
-      FarmaRev™ é marca e propriedade intelectual do desenvolvedor.<br>
-      Código-fonte protegido pela Lei nº 9.609/1998.<br>
-      Conteúdo didático protegido pela Lei nº 9.610/1998.
-    </div>
-  </section>
-
-  <div class="doc-footer">
-    <p><strong style="color:var(--text-secondary)">Versão:</strong> 1.0 · <strong style="color:var(--text-secondary)">Data de vigência:</strong> [DATA DE PUBLICAÇÃO] · <strong style="color:var(--text-secondary)">Idioma oficial:</strong> Português (Brasil)</p>
+  </header>
+  <div class="cta reveal" style="--i:2"><p><strong>Veja também a Política de Privacidade.</strong> Ela explica como o FarmaRev trata seus dados pessoais e como excluir sua conta.</p><a class="btn" href="https://feli-dev-hy.github.io/farmarev-legal/privacidade.html">Política de Privacidade</a></div>
+  <details class="reveal" style="--i:3"><summary>O que mudou na versão 2.0 (antes: 1.0)</summary>
+    <ul><li>Documento reformatado no mesmo padrão visual da Política de Privacidade, com sumário e rodapé padronizados.</li>
+    <li>Versão alinhada à Política de Privacidade (2.0), que é a versão registrada no aceite do cadastro.</li>
+    <li>Removido o marcador “[DATA DE PUBLICAÇÃO]” do rodapé: a vigência continua a partir da publicação na Play Store.</li>
+    <li>O texto das cláusulas não foi alterado.</li></ul></details>
+  <nav aria-label="Sumário" class="reveal" style="--i:4"><ol class="toc"><li><a href="#objeto">Objeto e Licença de Uso</a></li><li><a href="#propriedade">Propriedade Intelectual</a></li><li><a href="#fairuse">Isenção de Vínculo e Uso Justo</a></li><li><a href="#responsabilidade">Limitação de Responsabilidade</a></li><li><a href="#obrigacoes">Obrigações do Usuário</a></li><li><a href="#assinatura">Assinatura Premium e Pagamentos</a></li><li><a href="#foro">Foro de Eleição e Disposições Gerais</a></li></ol></nav>
+<section id="objeto" class="reveal" style="--i:6"><h2><small>§ 1</small>Objeto e Licença de Uso</h2>
+<h3 class="s">1.1 — Apresentação do Aplicativo</h3>
+<p>O <strong>FarmaRev</strong> é um aplicativo móvel de estudo desenvolvido e de titularidade exclusiva de <strong>LUIZ FELIPE DA MOTA ROCHA</strong>, pessoa física, doravante denominado "<strong>Desenvolvedor</strong>". O aplicativo oferece banco de questões, cartões de memorização (flashcards) e recursos de acompanhamento de progresso voltados exclusivamente ao preparo para concursos públicos nas áreas de Farmácia e Ciências Farmacêuticas.</p>
+<h3 class="s">1.2 — Licença Concedida</h3>
+<p>Ao instalar ou utilizar o FarmaRev, o usuário recebe uma licença de uso que é:</p>
+<ul><li><strong>Pessoal</strong> — somente para uso próprio do titular da conta cadastrada;</li><li><strong>Não-exclusiva</strong> — outros usuários podem igualmente obter a mesma licença;</li><li><strong>Intransferível</strong> — não pode ser cedida, vendida ou repassada a terceiros;</li><li><strong>Revogável</strong> — pode ser suspensa ou encerrada pelo Desenvolvedor em caso de violação destes Termos;</li><li><strong>Limitada à finalidade de estudo</strong> — qualquer uso comercial, institucional ou concorrente é expressamente vedado.</li></ul>
+<h3 class="s">1.3 — Público-Alvo e Restrição de Idade</h3>
+<p>O aplicativo é destinado a estudantes de graduação em Farmácia e profissionais farmacêuticos maiores de 18 anos. O cadastro por menores de idade não é permitido.</p>
+<p class="note"><strong>Base legal:</strong> Art. 9º da Lei nº 9.609/1998 — os programas de computador são objeto de proteção como obras intelectuais. A licença de uso aqui concedida não implica transferência de direito de propriedade sobre o software.</p>
+</section>
+<section id="propriedade" class="reveal" style="--i:7"><h2><small>§ 2</small>Propriedade Intelectual — Proteção do Conteúdo</h2>
+<h3 class="s">2.1 — Titularidade do Código-Fonte</h3>
+<p>O código-fonte, a arquitetura, os algoritmos, as interfaces gráficas e toda a lógica de programação do FarmaRev são de titularidade exclusiva de <strong>LUIZ FELIPE DA MOTA ROCHA</strong>, protegidos pela <strong>Lei nº 9.609/1998 (Lei do Software)</strong>. Qualquer reprodução, distribuição, sublicenciamento ou engenharia reversa — no todo ou em parte — sem autorização prévia e expressa por escrito configura infração punível nos termos dos Arts. 12 e 13 da referida lei.</p>
+<h3 class="s">2.2 — Titularidade do Conteúdo Didático Original</h3>
+<p>Todos os textos de <strong>explicações teóricas, resoluções comentadas de questões, resumos didáticos, dicas mnemônicas, mapas conceituais e qualquer outro material pedagógico original</strong> produzido e inserido no aplicativo pelo Desenvolvedor são obras intelectuais protegidas pela <strong>Lei nº 9.610/1998 (Lei de Direitos Autorais)</strong>, sendo vedado ao usuário:</p>
+<ul><li>Reproduzir ou publicar o conteúdo em qualquer meio digital ou impresso;</li><li>Criar obras derivadas com fins comerciais ou concorrentes;</li><li>Utilizar os textos para treinamento de modelos de inteligência artificial;</li><li>Distribuir o conteúdo a terceiros, mesmo que gratuitamente, sem autorização escrita.</li></ul>
+<h3 class="s">2.3 — Proibição de Extração Automática de Dados (Scraping)</h3>
+<p class="warn"><strong>⛔ EXPRESSAMENTE PROIBIDO.</strong> É vedado o uso de qualquer técnica ou ferramenta automatizada de extração de dados, incluindo, sem limitação: <em>web scrapers</em>, robôs, rastreadores (<em>crawlers</em>), scripts de automação, APIs não autorizadas ou qualquer outro mecanismo que acesse o conteúdo do aplicativo de forma não humana e não interativa, com o objetivo de copiar, clonar, indexar ou reproduzir comentários explicativos, resoluções ou quaisquer outros materiais didáticos de propriedade do Desenvolvedor para uso em plataformas concorrentes ou fins comerciais.</p>
+<p>A violação desta proibição sujeita o infrator às sanções civis e criminais previstas nos Arts. 102 a 110 da Lei nº 9.610/1998, podendo incluir indenização por danos materiais e morais, bem como medidas cautelares de cessação imediata da conduta.</p>
+<h3 class="s">2.4 — Marcas e Identidade Visual</h3>
+<p>O nome "<strong>FarmaRev</strong>", a logomarca "FR", o design do aplicativo e os elementos visuais característicos são marcas e obras de titularidade do Desenvolvedor. O uso não autorizado para fins comerciais, associação com produtos concorrentes ou qualquer ato que cause confusão no mercado é expressamente proibido.</p>
+<p class="note"><strong>Fundamento legal:</strong> Arts. 7º, XII e 29 da Lei 9.610/98 — obras de terceiros (questões de bancas) integradas ao app com fins educacionais são utilizadas no limite do <em>fair use</em> didático; o conteúdo autoral do Desenvolvedor tem proteção integral e independente.</p>
+</section>
+<section id="fairuse" class="reveal" style="--i:8"><h2><small>§ 3</small>Isenção de Vínculo e Uso Justo (Fair Use)</h2>
+<h3 class="s">3.1 — Titularidade das Questões de Terceiros</h3>
+<p>As questões de concursos públicos exibidas no FarmaRev são de titularidade das respectivas <strong>bancas organizadoras</strong> (tais como VUNESP, CESPE/CEBRASPE, FCC, AOCP, IADES, entre outras), e são utilizadas exclusivamente com caráter <strong>educacional, ilustrativo e sem fins lucrativos diretos</strong>, nos termos do Art. 46, III, da Lei nº 9.610/1998, que admite a reprodução de pequenos trechos de obras protegidas para fins didáticos, sempre com indicação de autoria.</p>
+<h3 class="s">3.2 — Ausência de Vínculo Institucional</h3>
+<p>O FarmaRev <strong>não possui nenhum vínculo, parceria, endosso, patrocínio ou aprovação</strong> de qualquer banca organizadora, órgão público, universidade, CFF (Conselho Federal de Farmácia), CRF (Conselho Regional de Farmácia) ou entidade governamental. As menções a essas organizações têm exclusivo caráter referencial.</p>
+<h3 class="s">3.3 — Atribuição de Fonte</h3>
+<p>Todas as questões exibidas identificam a respectiva banca organizadora, o concurso de origem e o ano de realização. Caso alguma entidade considere que o uso extrapola os limites do <em>fair use</em> educacional, poderá entrar em contato pelo e-mail <strong><a href="mailto:farmarevcontato@gmail.com">farmarevcontato@gmail.com</a></strong> para que a questão seja removida em prazo razoável.</p>
+</section>
+<section id="responsabilidade" class="reveal" style="--i:9"><h2><small>§ 4</small>Limitação de Responsabilidade</h2>
+<h3 class="s">4.1 — Natureza Pedagógica do Aplicativo</h3>
+<p>O FarmaRev é uma <strong>ferramenta de apoio ao estudo</strong>. O conteúdo disponibilizado tem caráter pedagógico e não constitui, em hipótese alguma, aconselhamento profissional, prescrição, orientação clínica ou qualquer forma de serviço regulamentado pelo CFF ou por outras entidades de saúde.</p>
+<h3 class="s">4.2 — Não Garantia de Aprovação</h3>
+<p>O Desenvolvedor emprega esforços razoáveis para manter o conteúdo atualizado com as <strong>diretrizes farmacêuticas vigentes</strong>, normas do CFF, legislações sanitárias e outros marcos regulatórios. Contudo, o FarmaRev <strong>não garante</strong>:</p>
+<ul><li>Aprovação do usuário em qualquer concurso público;</li><li>Que o conteúdo esteja em conformidade com a banca específica do concurso almejado pelo usuário;</li><li>Que as questões ou gabaritos estejam isentos de atualizações pós-publicação do concurso;</li><li>Desempenho específico em provas práticas, redações ou demais etapas seletivas.</li></ul>
+<h3 class="s">4.3 — Isenção por Decisões do Candidato</h3>
+<p>O Desenvolvedor não se responsabiliza por eventuais <strong>reprovações, decisões de inscrição, desistências, atos praticados em provas</strong> ou qualquer outra escolha profissional ou acadêmica tomada pelo usuário com base, exclusiva ou parcialmente, no conteúdo do aplicativo.</p>
+<h3 class="s">4.4 — Disponibilidade do Serviço</h3>
+<p>O aplicativo pode sofrer indisponibilidades por manutenção, falhas técnicas, atualizações do sistema operacional ou problemas de infraestrutura de terceiros (Firebase/Google). O Desenvolvedor não se responsabiliza por danos decorrentes dessas indisponibilidades.</p>
+<p class="note"><strong>Fundamento legal:</strong> Arts. 12 e 14 do Código de Defesa do Consumidor (Lei nº 8.078/1990) — a limitação de responsabilidade aqui prevista é aplicável às situações em que o defeito decorra de culpa exclusiva do consumidor ou de terceiro, conforme Art. 12, §3º, III do CDC.</p>
+</section>
+<section id="obrigacoes" class="reveal" style="--i:10"><h2><small>§ 5</small>Obrigações do Usuário</h2>
+<p>Ao utilizar o FarmaRev, o usuário se compromete a:</p>
+<ul><li>Fornecer informações verdadeiras e atualizadas no cadastro;</li><li>Manter a confidencialidade de suas credenciais de acesso (e-mail e senha);</li><li>Não compartilhar sua conta com terceiros;</li><li>Não tentar contornar restrições técnicas de acesso, como o limite de cards gratuitos;</li><li>Não realizar engenharia reversa, descompilar ou desmontar qualquer componente do aplicativo;</li><li>Não utilizar o conteúdo para fins comerciais sem autorização prévia.</li></ul>
+<p>A violação de qualquer dessas obrigações poderá resultar na suspensão ou cancelamento imediato da conta, sem direito a reembolso de valores pagos.</p>
+</section>
+<section id="assinatura" class="reveal" style="--i:11"><h2><small>§ 6</small>Assinatura Premium e Pagamentos</h2>
+<h3 class="s">6.1 — Plano Gratuito</h3>
+<p>O FarmaRev oferece gratuitamente acesso a um número limitado de cards (atualmente 10 cards por sessão). O acesso gratuito não tem prazo de validade, mas pode ser alterado pelo Desenvolvedor mediante aviso prévio de 30 dias.</p>
+<h3 class="s">6.2 — Plano Premium</h3>
+<p>O plano Premium desbloqueia o acesso a todos os cards disponíveis, bem como funcionalidades adicionais descritas na tela de assinatura do aplicativo. A cobrança é processada exclusivamente via <strong>Google Play Billing</strong>, conforme as políticas da Google LLC.</p>
+<h3 class="s">6.3 — Política de Reembolso</h3>
+<p>Reembolsos de assinaturas adquiridas via Google Play estão sujeitos à <strong>Política de Reembolso do Google Play</strong>, acessível em play.google.com. O usuário deve solicitar reembolsos diretamente ao Google, no prazo estabelecido pela plataforma.</p>
+<h3 class="s">6.4 — Alterações de Preço</h3>
+<p>Os preços do plano Premium podem ser alterados pelo Desenvolvedor, com aviso prévio de <strong>30 (trinta) dias</strong> via e-mail cadastrado ou notificação no aplicativo. A continuidade do uso após o novo preço entrar em vigor implica concordância com os valores atualizados.</p>
+</section>
+<section id="foro" class="reveal" style="--i:12"><h2><small>§ 7</small>Foro de Eleição e Disposições Gerais</h2>
+<h3 class="s">7.1 — Lei Aplicável</h3>
+<p>Estes Termos de Uso são regidos exclusivamente pelas leis da República Federativa do Brasil, em especial a Lei nº 9.609/1998, a Lei nº 9.610/1998, a Lei nº 13.709/2018 (LGPD) e o Código de Defesa do Consumidor (Lei nº 8.078/1990).</p>
+<h3 class="s">7.2 — Foro de Eleição</h3>
+<p>Para a resolução de qualquer controvérsia decorrente destes Termos, fica eleito o foro da <strong>comarca de ARARUAMA, Estado do RIO DE JANEIRO</strong>, com exclusão de qualquer outro, por mais privilegiado que seja, exceto nos casos em que a legislação de defesa do consumidor determine foro diverso em benefício do usuário.</p>
+<h3 class="s">7.3 — Alterações dos Termos</h3>
+<p>O Desenvolvedor reserva-se o direito de modificar estes Termos a qualquer momento. Alterações substanciais serão comunicadas com antecedência mínima de <strong>15 (quinze) dias</strong> via notificação no aplicativo ou e-mail cadastrado. O uso continuado após a vigência da nova versão implica concordância com as alterações.</p>
+<h3 class="s">7.4 — Contato</h3>
+<p>Para dúvidas, solicitações ou notificações legais relacionadas a estes Termos, o usuário pode entrar em contato pelo e-mail: <strong><a href="mailto:farmarevcontato@gmail.com">farmarevcontato@gmail.com</a></strong>.</p>
+</section>
+  <footer>
+    <p><a href="https://feli-dev-hy.github.io/farmarev-legal/privacidade.html">Política de Privacidade</a><a href="https://feli-dev-hy.github.io/farmarev-legal/exclusao-conta.html">Excluir conta</a><a href="#topo">↑ Voltar ao topo</a></p>
+    <p>© 2026 LUIZ FELIPE DA MOTA ROCHA. Todos os direitos reservados.<br>FarmaRev™ é marca e propriedade intelectual do desenvolvedor.<br>Código-fonte protegido pela Lei nº 9.609/1998.<br>Conteúdo didático protegido pela Lei nº 9.610/1998.</p>
+    <p>Versão 2.0 · Última atualização: 13 de outubro de 2026 · Vigência: a partir da data de publicação na Play Store · Idioma oficial: Português (Brasil)</p>
     <p>Este documento foi elaborado com base na legislação brasileira vigente. Não constitui aconselhamento jurídico. Para sua situação específica, consulte um advogado.</p>
-    <p>Veja também: <a href="privacidade.html">Política de Privacidade</a></p>
-  </div>
-
+  </footer>
 </div>
-
-<a href="#" class="back-to-top" title="Voltar ao topo">↑</a>
-
 </body>
 </html>
